@@ -8,8 +8,18 @@ from datetime import datetime
 from random import randint, choice, uniform
 from string import ascii_uppercase
 
-# Class that creates simulative data for feeding sinker
+'''
+class Simulation -> create simulation data in demanded format;  
 
+def data_json_feeder -> create array of jsons from Simulation object;
+
+def sinker -> reads, json file retriev in postges and print it;
+
+def ingested files -> moves files fron ing_a/(pseudo ingestion area) in archive/();
+
+'''
+
+# Class that creates simulative data for feeding sinker
 
 class Simulation:
     def __init__(self):
@@ -93,11 +103,13 @@ def move_ingested_files():
         shutil.move(os.path.join(source_dir, file_name), target_dir)
 
 
-# give name of the json file
+# give name of the json file create file for ingestion in directory ing_a
 file_name = Simulation().key
 test = data_json_feeder(1000)
 write_file = open(f'ing_a/{file_name}.json', 'w')
 write_file.write(test)
 write_file.close()
+# print data and load in postgres
 sinker()
+# move file from ing_a to archive
 move_ingested_files()
