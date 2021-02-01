@@ -2,7 +2,6 @@
 import os
 import psycopg2
 import json
-import shutil
 from config import config
 from datetime import datetime
 from random import randint, choice, uniform
@@ -55,37 +54,31 @@ def data_json_feeder(count):
 # creating files(array of jsons)
 
 
-def sinker():
+def sinker(file):
     # list all files from ingestion directory in list
-    files = os.listdir('./ing_a')
-
+   
     # DB connection and config
     conn = None
     params = config()
-
-    # test if no files no need for work
-    if len(files) < 1:
-        print("There is nothing for ingest!")
-        exit
 
     try:
         conn = psycopg2.connect(**params)
         psql_cursor = conn.cursor()
 
-        for j_file in files:
-            with open(f'ing_a/{j_file}') as json_file:
-                data = json.load(json_file)
-                for d in data:
-                    # sanitized data
-                    jon = json.dumps(d)
-                    key = d['key']
-                    value = d['value']
-                    ts = d['ts']
-                    # console prin and insert
-                    print(f'Load: {jon}')
-                    insrt = f'INSERT INTO inf_messages(KEY, VALUE, TS, ROW_JSON)VALUES(\'{key}\', {value}, \'{ts}\', \'{jon}\')'
-                    psql_cursor.execute(insrt)
-                    conn.commit()
+       # for j_file in files:
+        with open(file) as json_file:
+            data = json.load(json_file)
+            for d in data:
+                # sanitized data
+                jon = json.dumps(d)
+                key = d['key']
+                value = d['value']
+                ts = d['ts']
+                # console prin and insert
+                print(f'Load: {jon}')
+                insrt = f'INSERT INTO inf_messages(KEY, VALUE, TS, ROW_JSON)VALUES(\'{key}\', {value}, \'{ts}\', \'{jon}\')'
+                psql_cursor.execute(insrt)
+                conn.commit()
         psql_cursor.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
@@ -93,23 +86,12 @@ def sinker():
         if conn is not None:  # else broke earlyer
             conn.close()
 
-
-def move_ingested_files():
-    files = os.listdir('./ing_a')
-    source_dir = '/home/raddy/PseudoETL/ing_a/'
-    target_dir = '/home/raddy/PseudoETL/archive/'
-
-    for file_name in files:
-        shutil.move(os.path.join(source_dir, file_name), target_dir)
-
-
 # give name of the json file create file for ingestion in directory ing_a
 file_name = Simulation().key
 test = data_json_feeder(1000)
-write_file = open(f'ing_a/{file_name}.json', 'w')
+write_file = open(f'{file_name}.json', 'w')
 write_file.write(test)
 write_file.close()
 # print data and load in postgres
-sinker()
-# move file from ing_a to archive
-move_ingested_files()
+sinker(f'{file_name}.json')
+
