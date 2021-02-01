@@ -14,8 +14,6 @@ def data_json_feeder -> create array of jsons from Simulation object;
 
 def sinker -> reads, json file retriev in postges and print it;
 
-def ingested files -> moves files fron ing_a/(pseudo ingestion area) in archive/();
-
 '''
 
 # Class that creates simulative data for feeding sinker
