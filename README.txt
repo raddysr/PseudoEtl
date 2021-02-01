@@ -1,6 +1,6 @@
 -- not buildin used for connection to PostgreSQL -> psycopg2
 
--- database configuration config.py use database.ini
+-- database configuration config.py uses database.ini
  
 -- Please run commands via PSQL to have database required for test of the program:
 
