@@ -95,5 +95,6 @@ def etl(file):
         if conn is not None:
             conn.close()
 
+# ingest file with 1k jsons
 
 etl(Simulation(1000).write_file())
