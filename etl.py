@@ -16,13 +16,14 @@ def sinker -> reads, json file retriev in postges and print it;
 
 '''
 
-# Class that creates simulative data for feeding sinker
+# class that creates simulative data for feeding sinker
 
 class Simulation:
     def __init__(self):
         # key and values simulation
         self.key = f'{choice(ascii_uppercase)}{randint(100,999)}'
         self.value = round(uniform(1, 100), 1)
+
 # random ts simulation
 
     def random_ts(self):
@@ -32,6 +33,7 @@ class Simulation:
         z_sings = ['-', '+']
         ts = f'{date}.{randint(100000, 999999)}{choice(z_sings)}0{randint(0,9)}:00'
         return ts
+
 # dictionary formed data
 
     def generate_data(self):
@@ -39,8 +41,7 @@ class Simulation:
                          "value": f'{self.value}', 'ts': f'{self.random_ts()}'}
         return generate_data
 
-# use simulation for creating data sources
-
+# use simulation for creating data sources file(array of jsons)
 
 def data_json_feeder(count):
     file_data = []
@@ -49,12 +50,9 @@ def data_json_feeder(count):
         file_data.append(source.generate_data())
     return json.dumps(file_data)
 
-# creating files(array of jsons)
-
-
+# print data and retrieve
 def sinker(file):
-    # list all files from ingestion directory in list
-   
+
     # DB connection and config
     conn = None
     params = config()
@@ -84,8 +82,9 @@ def sinker(file):
         if conn is not None:  # else broke earlyer
             conn.close()
 
-# give name of the json file create file for ingestion in directory ing_a
+# give name of the json file create file 
 file_name = Simulation().key
+#create file with 1000 jsons
 test = data_json_feeder(1000)
 write_file = open(f'{file_name}.json', 'w')
 write_file.write(test)
