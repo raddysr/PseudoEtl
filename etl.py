@@ -7,27 +7,30 @@ from random import randint, choice, uniform
 from string import ascii_uppercase
 
 '''
-class Simulation -> create simulation data in demanded format, array of jsons file;
+class Source -> create simulation data in demanded format, array of jsons file;
 
 def sinker -> reads, json file retriev in postges and print it;
 
 '''
 
 
-class Simulation:
+class Source:
     def __init__(self, count):
         # count of jsons in the file
         self.count = count
+
 # random key
 
     def rand_key(self):
         key = f'{choice(ascii_uppercase)}{randint(100,999)}'
         return key
+
 # random value
 
     def rand_value(self):
         value = round(uniform(1, 100), 1)
         return value
+
 # random timestamp
 
     def rand_ts(self):
@@ -37,12 +40,14 @@ class Simulation:
         z_sings = ['-', '+']
         ts = f'{date}.{randint(100000, 999999)}{choice(z_sings)}0{randint(0,9)}:00'
         return ts
+
 # dictionary formed data
 
     def generate_data(self):
         generate_data = {"key": f'{self.rand_key()}',
                          "value": f'{self.rand_value()}', 'ts': f'{self.rand_ts()}'}
         return generate_data
+
 # json array
 
     def data_json_feeder(self):
@@ -50,6 +55,7 @@ class Simulation:
         for i in range(self.count):
             file_data.append(self.generate_data())
         return json.dumps(file_data)
+
 # file with array self.count jsons and name rand_key().json
 
     def write_file(self):
@@ -95,6 +101,6 @@ def etl(file):
         if conn is not None:
             conn.close()
 
-# ingest file with 1k jsons
 
-etl(Simulation(1000).write_file())
+# ingest file with 1k jsons
+etl(Source(1000).write_file())
