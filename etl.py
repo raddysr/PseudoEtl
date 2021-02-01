@@ -50,7 +50,7 @@ def data_json_feeder(count):
         file_data.append(source.generate_data())
     return json.dumps(file_data)
 
-# print data and retrieve
+# print data and write
 def sinker(file):
 
     # DB connection and config
