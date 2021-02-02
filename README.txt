@@ -1,6 +1,6 @@
 -- etl.py -> psuedo ETL program interface(run it 'python3 elt.py')
 
--- config.py -> load configuration from database.ini(loaded in etl.py module - no need to touch it or run it)
+-- config.py -> load configuration from database.ini(loaded in etl.py so no need to touch it or run it)
 
 -- not buildin used for connection to PostgreSQL -> psycopg2
 
