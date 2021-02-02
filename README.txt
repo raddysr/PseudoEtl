@@ -1,12 +1,12 @@
-1.etl.py -> psuedo etl interface
+-- etl.py -> psuedo ETL program interface run 'python3 elt.py'
 
-2.config.py->load configuration from database.ini
+-- config.py -> load configuration from database.ini(loaded in etl.py module - no need to touch it or run it)
 
 -- not buildin used for connection to PostgreSQL -> psycopg2
 
 -- database configuration config.py uses database.ini
  
--- Please run commands via PSQL to have database required for tests of the program:
+-- please run commands via PSQL to have database required for testing the program:
 
 /*
 
