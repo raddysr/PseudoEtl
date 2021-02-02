@@ -1,3 +1,7 @@
+1.etl.py -> psuedo etl interface
+
+2.config.py->load configuration from database.ini
+
 -- not buildin used for connection to PostgreSQL -> psycopg2
 
 -- database configuration config.py uses database.ini
