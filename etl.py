@@ -71,7 +71,7 @@ class Source:
             write_file.close()
             return file_name
 
-# extract data, transofrme it in a python structure and load it console and PostreSQL
+# extract data, transforme it in a python structure and load it(console and PostreSQL)
 
 def etl(source_output):
     # load config
