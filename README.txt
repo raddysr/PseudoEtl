@@ -3,10 +3,8 @@
 -- config.py -> load configuration from database.ini(loaded in etl.py so no need to touch it or run it)
 
 -- not buildin used for connection to PostgreSQL -> psycopg2
-
--- database configuration config.py uses database.ini
  
--- please run commands via PSQL to have database required for testing the program:
+-- please run following commands in PSQL to have database required for testing the program:
 
 /*
 
@@ -21,4 +19,5 @@ CREATE TABLE inf_messages (
    ROW_JSON JSON NOT NULL
 );
 GRANT ALL PRIVILEGES ON TABLE inf_messages TO adastra;
+
 */
