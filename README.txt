@@ -1,4 +1,4 @@
--- etl.py -> psuedo ETL program interface run 'python3 elt.py'
+-- etl.py -> psuedo ETL program interface(run it 'python3 elt.py')
 
 -- config.py -> load configuration from database.ini(loaded in etl.py module - no need to touch it or run it)
 
