@@ -6,7 +6,7 @@
 
 -- database configuration config.py uses database.ini
  
--- Please run commands via PSQL to have database required for test of the program:
+-- Please run commands via PSQL to have database required for tests of the program:
 
 /*
 
