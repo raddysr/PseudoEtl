@@ -7,7 +7,7 @@ from random import randint, choice, uniform
 from string import ascii_uppercase
 
 '''
-class Source -> create simulation data in demanded format, array of jsons file;
+class Source -> create simulation data - array of jsons file/json messages;
 
 def sinker -> reads data/file write it in postgres and print it;
 
