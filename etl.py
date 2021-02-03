@@ -9,7 +9,7 @@ from string import ascii_uppercase
 '''
 class Source -> create simulation data in demanded format, array of jsons file;
 
-def sinker -> reads, json file write in postgres and print it;
+def sinker -> reads data/file write it in postgres and print it;
 
 '''
 
