@@ -4,7 +4,7 @@
 
 -- not buildin used for connection to PostgreSQL -> psycopg2
  
--- please run following commands in PSQL to have database required for testing the program:
+-- please run following commands in PostgreSQL to have database required for testing the program:
 
 /*
 
