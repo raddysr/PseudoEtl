@@ -13,7 +13,6 @@ def sinker -> reads data/file write it in postgres and print it;
 
 '''
 
-
 class Source:
     def __init__(self, count=1, type='simulation'):
         # count of jsons in the file
